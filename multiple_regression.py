@@ -18,3 +18,4 @@ x = np.array(encoder.fit_transform(x))
 
 # Splitting the data into training and test set
 splitter = train_test_split(x, y, test_size=0.2, random_state=1)
+# testing the notification
