@@ -17,5 +17,15 @@ encoder = ColumnTransformer(transformers=[('encoder',OneHotEncoder(),[3])],remai
 x = np.array(encoder.fit_transform(x))
 
 # Splitting the data into training and test set
-splitter = train_test_split(x, y, test_size=0.2, random_state=1)
-# testing the notification
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=1)
+
+
+# Creating the model
+
+regressor = LinearRegression()
+regressor.fit(x_train,y_train)
+
+# Plotting
+y_predicted = regressor.predict(x_train)
+np.set_printoptions(precision=2)
+print(np.concatenate((y_predicted.reshape(len(y_predicted),1),y_test.reshape(len(y_test),1)),0))
