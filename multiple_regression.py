@@ -19,23 +19,21 @@ x = np.array(encoder.fit_transform(x))
 # Splitting the data into training and test set
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=1)
 
-
 # Creating the model
-
 regressor = LinearRegression()
-regressor.fit(x_train,y_train)
+regressor.fit(x_train, y_train)
 
-# Plotting
+# Predicting values
 y_predicted = regressor.predict(x_train)
 np.set_printoptions(precision=2)
-# print(np.concatenate((y_predicted.reshape(len(y_predicted),1),y_test.reshape(len(y_test),1)),0))
 
+# Calculate residuals for training and test set
 y_train_pred = regressor.predict(x_train)
 y_test_pred = regressor.predict(x_test)
-# Plotting residuals for training set
 train_residuals = y_train - y_train_pred
 test_residuals = y_test - y_test_pred
 
+# Plotting residuals for training set
 plt.figure(figsize=(10, 6))
 plt.scatter(y_train_pred, train_residuals, color='blue', label='Training data')
 plt.scatter(y_test_pred, test_residuals, color='red', label='Testing data')
@@ -45,8 +43,6 @@ plt.ylabel('Residuals')
 plt.title('Residuals Plot')
 plt.legend()
 plt.show()
-
-
 
 # Plotting Actual vs. Predicted values for training set
 plt.figure(figsize=(10, 6))
